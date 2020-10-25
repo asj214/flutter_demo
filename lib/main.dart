@@ -30,18 +30,35 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: LeftDrawer(),
-      appBar: AppBar(
-        title: Text('Flutter Example'),
-      ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            MainSwiper(),
-            Text('Body', style: TextStyle(fontSize: 20)),
-          ],
+        drawer: LeftDrawer(),
+        appBar: AppBar(
+          title: Text('Flutter Example'),
         ),
-      ),
-    );
+        body: Center(
+          child: Column(
+            children: <Widget>[
+              MainSwiper(),
+              Text('Body', style: TextStyle(fontSize: 20)),
+            ],
+          ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            onTap: (index) => {},
+            currentIndex: 0,
+            items: [
+              new BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              new BottomNavigationBarItem(
+                icon: Icon(Icons.mail),
+                label: 'First',
+              ),
+              new BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: 'Second',
+              )
+            ]));
   }
 }

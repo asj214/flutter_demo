@@ -17,9 +17,7 @@ final List<Widget> imageSliders = imgList
             child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 child: Stack(
-                  children: <Widget>[
-                    Image.network(item, fit: BoxFit.cover, width: 1200.0)
-                  ],
+                  children: <Widget>[Image.network(item, fit: BoxFit.cover)],
                 )),
           ),
         ))
@@ -31,19 +29,24 @@ class MainSwiper extends StatefulWidget {
 }
 
 class _MainSwiper extends State<MainSwiper> {
+
   @override
   Widget build(BuildContext context) {
+
     return Container(
-        margin: EdgeInsets.fromLTRB(0, 5, 0, 15),
-        child: CarouselSlider(
-          options: CarouselOptions(
-            aspectRatio: 2.0,
-            enlargeCenterPage: false,
-            enableInfiniteScroll: true,
-            initialPage: 2,
-            autoPlay: true,
-          ),
-          items: imageSliders,
-        ));
+      margin: EdgeInsets.fromLTRB(0, 5, 0, 15),
+      child: CarouselSlider(
+        options: CarouselOptions(
+          aspectRatio: 2.0,
+          enlargeCenterPage: false,
+          enableInfiniteScroll: true,
+          initialPage: 1,
+          autoPlay: true,
+        ),
+        items: imageSliders,
+      )
+    );
+
   }
+
 }

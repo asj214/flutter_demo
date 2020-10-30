@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/profile/profile_view.dart';
 
 class LeftDrawer extends StatelessWidget {
   @override
@@ -22,7 +23,14 @@ class LeftDrawer extends StatelessWidget {
       ListTile(
         leading: Icon(Icons.account_circle),
         title: Text('Profile', style: TextStyle(fontSize: 17)),
-        onTap: () => {},
+        onTap: () => {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProfileView()
+            )
+          )
+        },
       ),
     ]));
   }

@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashScreen(),
       routes: <String, WidgetBuilder>{
-        '/HomeScreen': (BuildContext context) => MyHomePage()
+        '/HomeScreen': (BuildContext context) => MyHomePage(),
+        //'/Profile': (BuildContext context) => ProfileView()
       }
     );
 

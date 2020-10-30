@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'nav/left_drawer.dart';
+import 'splash_screen.dart';
 import 'main/main_swiper.dart';
 
 void main() {
@@ -11,13 +12,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: SplashScreen(),
+        routes: <String, WidgetBuilder>{
+          '/HomeScreen': (BuildContext context) => MyHomePage()
+        });
   }
 }
 

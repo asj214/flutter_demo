@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/cards/card_show.dart';
 
 var cardLists = [
   {
@@ -18,42 +19,54 @@ var cardLists = [
   }
 ];
 
-final List<Widget> cards = cardLists.map((item) {
-  return Card(
-    child: Container(
-      decoration: BoxDecoration(color: Colors.white),
-      margin: EdgeInsets.only(bottom: 5.0),
-      child: Column(
-        children: [
-          Image.network(item['url'], fit: BoxFit.cover),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              margin: EdgeInsets.all(5.0),
-              child: Text(item['title'], style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
-            )
-          ),
-        ]
-      )
-    )
-  ); 
-}).toList();
-
-
 class MainCard extends StatefulWidget {
   @override
   _MainCard createState() => _MainCard();
 }
 
 class _MainCard extends State<MainCard> {
+
+
   @override
   Widget build(BuildContext context) {
 
     return Container(
+      margin: EdgeInsets.fromLTRB(7, 7, 7, 10),
       child: Column(
-        children: cards
+        children: cardLists.map((item) {
+          return GestureDetector(
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CardShow(id: item['id'])
+                )
+              );
+            },
+            child: Card(
+              child: Container(
+                decoration: BoxDecoration(color: Colors.white),
+                margin: EdgeInsets.only(bottom: 5.0),
+                child: Column(
+                  children: [
+                    Image.network(item['url'], fit: BoxFit.cover),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        margin: EdgeInsets.fromLTRB(5, 10, 5, 5),
+                        child: Text(item['title'], style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
+                      )
+                    ),
+                  ]
+                )
+              )
+            )
+          );
+        }).toList()
+
       )
     );
 
   }
+
 }

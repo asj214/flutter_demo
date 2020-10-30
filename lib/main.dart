@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.grey[100],
       drawer: LeftDrawer(),
       appBar: AppBar(
-        title: Text('Flutter Example'),
+        title: Text('Flutter'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
-                  margin: EdgeInsets.only(left: 5.0, bottom: 10.0),
+                  margin: EdgeInsets.only(left: 10.0, bottom: 10.0),
                   child: Text('Best Cards',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
                 )

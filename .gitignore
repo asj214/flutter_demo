@@ -45,3 +45,12 @@ pubspec.lock
 .vscode
 
 android/gradle.properties
+
+ios
+ios/*
+ios/Flutter
+ios/Flutter/*
+ios/Runner.xcodeproj
+ios/Runner.xcodeproj/*
+ios/Runner.xcworkspace
+ios/Runner.xcworkspace/*

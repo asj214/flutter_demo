@@ -1,4 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_demo/state/user_state.dart';
+import 'package:flutter_demo/constants.dart' as Constants;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -7,8 +12,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPage extends State<LoginPage> {
 
-  String email = '';
-  String password = '';
+  final TextEditingController _emailController = TextEditingController(text: 'asj214@naver.com');
+  final TextEditingController _passwordController = TextEditingController(text: '1234');
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +57,8 @@ class _LoginPage extends State<LoginPage> {
                   hintText: 'Email',
                   hintStyle: TextStyle(color: Colors.grey)
                 ),
-                cursorColor: Colors.green,
-                onChanged: (String value){
-                  email = value;
-                },
+                controller: _emailController,
+                cursorColor: Colors.green
               ),
             ),
 
@@ -78,10 +81,8 @@ class _LoginPage extends State<LoginPage> {
                   hintText: 'Password',
                   hintStyle: TextStyle(color: Colors.grey)
                 ),
-                cursorColor: Colors.green,
-                onChanged: (String value){
-                  password = value;
-                }
+                controller: _passwordController,
+                cursorColor: Colors.green
               ),
             ),
 
@@ -97,10 +98,7 @@ class _LoginPage extends State<LoginPage> {
                 ),
                 color: Colors.green,
                 child: Text('Login', style: TextStyle(color: Colors.white)),
-                onPressed: (){
-                  String msg = 'email: $email\npassword: $password';
-                  return _showDialog(msg);
-                }
+                onPressed: () => _login(context)
               )
             )
 
@@ -111,6 +109,45 @@ class _LoginPage extends State<LoginPage> {
       )
       
     );
+
+  }
+
+  void _login(BuildContext context) async {
+
+    String loginUrl = Constants.SERVER+'/api/user/login';
+    var response = await http.post(
+      loginUrl,
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode({
+        'email': _emailController.text,
+        'password': _passwordController.text
+      })
+    );
+
+    Map<String, dynamic> data = jsonDecode(response.body);
+
+    if(data['status'] != 200){
+      return _showDialog(data['message']);
+    }
+
+    String url = Constants.SERVER+'/api/user/';
+    response = await http.get(
+      url,
+      headers: {
+        "accept": "*/*",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+data['access_token'] 
+      }
+    );
+
+    final UserState state = Provider.of<UserState>(context, listen: false);
+
+    Map<String, dynamic> user = jsonDecode(response.body);
+
+    state.setToken(data['access_token']);
+    state.setUser(user);
+
+    return _showDialog('Hello '+user['name']);
 
   }
 

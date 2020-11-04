@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_demo/state/user_state.dart';
 import 'nav/left_drawer.dart';
 import 'splash_screen.dart';
 import 'main/main_swiper.dart';
 import 'main/main_card.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      // builder: (context) => UserState(),
+      create: (BuildContext context) => UserState(),
+      child: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/cards/card_show.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 var cardLists = [
   {
@@ -49,7 +50,10 @@ class _MainCard extends State<MainCard> {
                 margin: EdgeInsets.only(bottom: 5.0),
                 child: Column(
                   children: [
-                    Image.network(item['url'], fit: BoxFit.cover),
+                    Image(
+                      image: CachedNetworkImageProvider(item['url']),
+                      fit: BoxFit.cover
+                    ),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Container(

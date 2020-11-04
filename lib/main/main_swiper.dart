@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 final List<String> imgList = [
   'https://1.bp.blogspot.com/-Zkws5VpzVdU/W6RGm9DqK5I/AAAAAAACVzs/04DOhteKaukITiIVUB9UwuCdHsPEyzFLQCLcBGAs/s1600/%25EC%2595%2584%25EC%259D%25B4%25EC%259C%25A0%2B191.jpg',
@@ -17,7 +18,12 @@ final List<Widget> imageSliders = imgList
             child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 child: Stack(
-                  children: <Widget>[Image.network(item, fit: BoxFit.cover)],
+                  children: <Widget>[
+                    Image(
+                      image: CachedNetworkImageProvider(item),
+                      fit: BoxFit.cover
+                    )
+                  ],
                 )),
           ),
         ))

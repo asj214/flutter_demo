@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 
 var card = {
   'id': 1,
@@ -39,9 +39,10 @@ class _CardShow extends State<CardShow> {
                   margin: EdgeInsets.only(bottom: 5.0),
                   child: Column(
                     children: [
-                      
-                      Image.network(card['url'], fit: BoxFit.cover),
-                      
+                      Image(
+                        image: CachedNetworkImageProvider(card['url']),
+                        fit: BoxFit.cover
+                      ),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Container(

@@ -147,7 +147,8 @@ class _LoginPage extends State<LoginPage> {
     state.setToken(data['access_token']);
     state.setUser(user);
 
-    return _showDialog('Hello '+user['name']);
+    // return _showDialog('Hello '+user['name']);
+    Navigator.of(context).pushReplacementNamed('/HomeScreen');
 
   }
 

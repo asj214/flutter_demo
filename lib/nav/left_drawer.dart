@@ -1,10 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/profile/profile_view.dart';
 import 'package:flutter_demo/login/login_page.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_demo/state/user_state.dart';
 
-class LeftDrawer extends StatelessWidget {
+class LeftDrawer extends StatefulWidget {
+  @override
+  _LeftDrawer createState() => _LeftDrawer();
+}
+
+class _LeftDrawer extends State<LeftDrawer> {
+
+  Widget loginMenu(context){
+
+    return Consumer<UserState>(builder: (context, state, child){
+
+      if([0, null, ""].contains(state.id)){
+        return ListTile(
+          leading: Icon(Icons.account_circle),
+          title: Text('Login', style: TextStyle(fontSize: 17)),
+          onTap: () => {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LoginPage()
+              )
+            )
+          },
+        );
+      } else {
+        return ListTile(
+          leading: Icon(Icons.account_circle),
+          title: Text('Logout', style: TextStyle(fontSize: 17)),
+          onTap: () => {
+          },
+        );
+      }
+
+
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -35,18 +75,7 @@ class LeftDrawer extends StatelessWidget {
               )
             },
           ),
-          ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text('Login', style: TextStyle(fontSize: 17)),
-            onTap: () => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LoginPage()
-                )
-              )
-            },
-          ),
+          loginMenu(context),
         ]
       )
     );

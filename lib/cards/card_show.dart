@@ -29,7 +29,7 @@ class _CardShow extends State<CardShow> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.fromLTRB(7, 7, 7, 10),
+          margin: EdgeInsets.fromLTRB(0, 7, 0, 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
